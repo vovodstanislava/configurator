@@ -61,7 +61,7 @@ export default {
         <v-col :key="item" v-for="item in items[selectedComponent]" cols="4">
           <v-card>
             <v-img
-              :src="item.image"
+              :src="require(item.image)"
               height="200px"
             ></v-img>
 

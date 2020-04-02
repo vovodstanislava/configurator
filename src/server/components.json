@@ -3,14 +3,20 @@
     {
       "id": 1,
       "name": "Titanum TKR101 Standard Keyboard",
-      "image": "../src/assets/images/motherboard.png",
+      "image": "../assets/keyboard/1.png",
       "price": 500
     },
     {
       "id": 2,
       "name": "SVEN Multimedia KB-S300",
-      "image": "../src/assets/images/motherboard.png",
-      "price": 500
+      "image": "../assets/keyboard/2.png",
+      "price": 545
+    },
+    {
+      "id": 3,
+      "name": "SVEN Multimedia KB-S700",
+      "image": "../assets/keyboard/3.png",
+      "price": 576
     }
   ],
   "monitors": [
