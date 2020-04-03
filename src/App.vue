@@ -52,8 +52,8 @@ export default {
 
 <style scoped>
   .wrapper, .router-view {
-    padding-left: 15%!important;
-    padding-right: 15%!important;
+    padding-left: 11%!important;
+    padding-right: 11%!important;
   }
 
 </style>

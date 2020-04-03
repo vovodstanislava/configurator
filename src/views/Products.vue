@@ -3,7 +3,7 @@ export default {
   name: 'Products',
   data () {
     return {
-      selectedComponent: '',
+      selectedComponent: 'motherboards',
       list: [
         { text: 'Motherboards', icon: 'mdi-chart-tree', value: 'motherboards' },
         { text: 'Processors', icon: 'mdi-memory', value: 'processors' },
@@ -56,13 +56,14 @@ export default {
         </v-list>
       </v-card>
     </v-col>
-    <v-col cols="9" class="pt-0">
+    <v-col cols="9" class="pt-2">
       <v-row>
-        <v-col :key="item" v-for="item in items[selectedComponent]" cols="4">
-          <v-card>
+        <v-col :key="item.id" v-for="item in items[selectedComponent]" cols="3" class="pa-1">
+          <v-card height="435">
             <v-img
-              :src="require(item.image)"
+              :src="require('../'+item.image)"
               height="200px"
+              :contain="true"
             ></v-img>
 
             <v-card-title>
@@ -73,7 +74,7 @@ export default {
               {{item.description}}
             </v-card-subtitle>
 
-            <v-card-actions>
+            <v-card-actions class="card-actions">
           <span class="title font-weight-light pl-2">
             {{item.price}} $
           </span>
@@ -95,5 +96,9 @@ export default {
 </template>
 
 <style scoped>
-
+.card-actions{
+  position: absolute !important;
+  bottom: 0;
+  width: 100%;
+}
 </style>
