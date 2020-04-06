@@ -22,7 +22,7 @@ export default {
         height="60"
         class="wrapper"
       >
-        <v-app-bar-nav-icon>
+        <v-app-bar-nav-icon to="/">
           <v-icon large>
             mdi-laptop
           </v-icon>

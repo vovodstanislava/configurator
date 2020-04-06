@@ -1,13 +1,18 @@
 <script>
 export default {
-  name: 'Orders'
+  name: 'Orders',
+  computed: {
+    orders () {
+      return this.$store.getters.getOrders
+    }
+  }
 }
 </script>
 
 <template>
-  <div>
-    orders
-  </div>
+  <v-row>
+    <pre>{{orders}}</pre>
+  </v-row>
 </template>
 
 <style scoped>

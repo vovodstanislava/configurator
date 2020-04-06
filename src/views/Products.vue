@@ -17,6 +17,11 @@ export default {
       items: {}
     }
   },
+  computed: {
+    cartComponent () {
+      return this.$store.getters.getCart
+    }
+  },
   async mounted () {
     await this.loadData()
   },
@@ -24,10 +29,15 @@ export default {
     async loadData () {
       try {
         this.items = (await import('../server/components')).default
-        console.log(this.items)
       } catch {
         console.log('Load error')
       }
+    },
+    addToCart (product) {
+      this.$store.dispatch('setProduct', {
+        product,
+        type: this.selectedComponent
+      })
     }
   }
 }
@@ -35,7 +45,7 @@ export default {
 
 <template>
   <v-row>
-    <v-col cols="3">
+    <v-col cols="12" sm="12" md="4" lg="3" xl="3">
       <v-card>
         <v-list>
           <v-subheader>Components</v-subheader>
@@ -56,12 +66,12 @@ export default {
         </v-list>
       </v-card>
     </v-col>
-    <v-col cols="9" class="pt-2">
+    <v-col cols="12" sm="12" md="8" lg="9" xl="9" class="pt-2">
       <v-row>
-        <v-col :key="item.id" v-for="item in items[selectedComponent]" cols="3" class="pa-1">
+        <v-col :key="item.id" v-for="item in items[selectedComponent]" cols="12" sm="12" md="6" lg="4" xl="3" class="pa-1">
           <v-card height="435">
             <v-img
-              :src="require('../'+item.image)"
+              :src="require('../' + item.image)"
               height="200px"
               :contain="true"
             ></v-img>
@@ -84,6 +94,7 @@ export default {
                 color="purple"
                 class="pb-2 pr-4"
                 icon
+                @click="addToCart(item)"
               >
                 <v-icon large>mdi-cart</v-icon>
               </v-btn>
