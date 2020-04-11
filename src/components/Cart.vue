@@ -164,13 +164,13 @@ export default {
             v-model="valid"
           >
           <v-row>
-            <v-col cols="6">
+            <v-col cols="6" class="pa-1">
               <v-text-field label="First name*" :rules="nameRules" v-model="user.firstName" required></v-text-field>
             </v-col>
-            <v-col cols="6">
+            <v-col cols="6" class="pa-1">
               <v-text-field label="Second name*" :rules="nameRules" v-model="user.secondName" required></v-text-field>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="6" class="pa-1">
               <v-text-field
                 label="Phone*"
                 persistent-hint
@@ -179,13 +179,13 @@ export default {
                 v-model="user.phone"
               ></v-text-field>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="6" class="pa-1">
               <v-text-field label="Email*" :rules="emailRules" v-model="user.email" required></v-text-field>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12" class="pa-1">
               <v-textarea label="Comment" v-model="user.comment"></v-textarea>
             </v-col>
-            <v-col cols="12">
+            <v-col cols="12" class="pa-1">
               <v-text-field label="Promotional code" v-model="user.promo"></v-text-field>
             </v-col>
           </v-row>
