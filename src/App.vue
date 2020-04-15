@@ -7,8 +7,13 @@ export default {
     Cart
   },
   data: () => ({
-    //
-  })
+    snackbar: false
+  }),
+  methods: {
+    showSnack () {
+      this.snackbar = true
+    }
+  }
 }
 </script>
 
@@ -40,11 +45,25 @@ export default {
           Orders
         </v-btn>
 
-        <Cart />
+        <Cart :showSnack = "showSnack"/>
       </v-app-bar>
 
       <v-content class="router-view">
           <router-view></router-view>
+        <v-snackbar
+          v-model="snackbar"
+          color="green"
+          bottom
+          right
+        >
+          Order is processed!
+          <v-btn
+            text
+            @click="snackbar = false"
+          >
+            Close
+          </v-btn>
+        </v-snackbar>
       </v-content>
     </v-app>
   </div>

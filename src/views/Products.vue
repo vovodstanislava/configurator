@@ -18,8 +18,35 @@ export default {
     }
   },
   computed: {
-    cartComponent () {
+    cartComponents () {
       return this.$store.getters.getCart
+    },
+    filteredItems () {
+      const items = Object.assign({}, this.items)
+      const processorIndex = this.cartComponents.findIndex(item => item.type === 'processors')
+      const motherboardIndex = this.cartComponents.findIndex(item => item.type === 'motherboards')
+      const ramIndex = this.cartComponents.findIndex(item => item.type === 'ram')
+
+      if (processorIndex !== -1) {
+        const processor = this.cartComponents[processorIndex].product
+
+        items.motherboards = items.motherboards.filter(item => item.socket === processor.socket)
+      }
+
+      if (motherboardIndex !== -1) {
+        const motherboard = this.cartComponents[motherboardIndex].product
+
+        items.processors = items.processors.filter(item => item.socket === motherboard.socket)
+        items.ram = items.ram.filter(item => item.memoryType === motherboard.memoryType)
+      }
+
+      if (ramIndex !== -1) {
+        const ram = this.cartComponents[ramIndex].product
+
+        items.motherboards = items.motherboards.filter(item => item.memoryType === ram.memoryType)
+      }
+
+      return items
     }
   },
   async mounted () {
@@ -68,7 +95,7 @@ export default {
     </v-col>
     <v-col cols="12" sm="12" md="8" lg="9" xl="9" class="pt-2">
       <v-row>
-        <v-col :key="item.id" v-for="item in items[selectedComponent]" cols="12" sm="12" md="6" lg="4" xl="3" class="pa-1">
+        <v-col :key="item.id" v-for="item in filteredItems[selectedComponent]" cols="12" sm="12" md="6" lg="4" xl="3" class="pa-1">
           <v-card height="435">
             <v-img
               :src="require('../' + item.image)"

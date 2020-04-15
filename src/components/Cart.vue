@@ -1,10 +1,12 @@
 <script>
 export default {
   name: 'Cart',
+  props: ['showSnack'],
   data () {
     return {
       dialog: false,
       valid: true,
+      snackbar: false,
       user: {
         firstName: '',
         secondName: '',
@@ -55,6 +57,7 @@ export default {
           this.saveToLocalstorage()
           this.clearCart()
           this.reset()
+          this.showSnack()
           this.dialog = false
         }
       })
@@ -64,11 +67,13 @@ export default {
     },
     saveToLocalstorage () {
       const orders = JSON.parse(localStorage.getItem('orders')) || []
+
       const order = {
         items: this.items,
         price: this.totalPrice,
         pay: this.totalPrice - this.promotion,
-        user: Object.assign({}, this.user)
+        user: Object.assign({}, this.user),
+        date: new Date().toISOString().split('T')[0]
       }
 
       orders.push(order)
