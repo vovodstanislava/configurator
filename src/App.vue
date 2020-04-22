@@ -69,10 +69,12 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style>
   .wrapper, .router-view {
     padding-left: 11%!important;
     padding-right: 11%!important;
   }
-
+  html {
+    overflow: hidden !important;
+  }
 </style>

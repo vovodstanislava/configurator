@@ -93,7 +93,7 @@ export default {
         </v-list>
       </v-card>
     </v-col>
-    <v-col cols="12" sm="12" md="8" lg="9" xl="9" class="pt-2">
+    <v-col cols="12" sm="12" md="8" lg="9" xl="9" class="pt-2 product-container">
       <v-row>
         <v-col :key="item.id" v-for="item in filteredItems[selectedComponent]" cols="12" sm="12" md="6" lg="4" xl="3" class="pa-1">
           <v-card height="435">
@@ -134,9 +134,24 @@ export default {
 </template>
 
 <style scoped>
-.card-actions{
-  position: absolute !important;
-  bottom: 0;
-  width: 100%;
-}
+  .card-actions {
+    position: absolute !important;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .product-container {
+    height: calc(100vh - 80px);
+    overflow-x: auto;
+  }
+
+  .product-container::-webkit-scrollbar {
+    width: 3px;
+  }
+  .product-container::-webkit-scrollbar-thumb {
+    background: #f0f0f0;
+  }
+  .product-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(86, 52, 233, 0.9);
+  }
 </style>
